@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database defaultIdMethod="native" name="thelia"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="../../../../vendor/propel/propel/resources/xsd/database.xsd" >
+
+    <table name="customer_last_presence" namespace="CustomerLastPresence\Model">
+        <column name="customer_id" primaryKey="true" required="true" type="INTEGER" />
+        <column name="date" required="true" type="TIMESTAMP" />
+
+        <foreign-key foreignTable="customer" name="fk_customer_last_presence_customer_id" onDelete="CASCADE" onUpdate="RESTRICT">
+            <reference foreign="id" local="customer_id" />
+        </foreign-key>
+
+        <unique>
+            <unique-column name="customer_id" />
+        </unique>
+    </table>
+
+    <external-schema filename="local/config/schema.xml" referenceOnly="true" />
+</database>
